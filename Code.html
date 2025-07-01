@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto PIN Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f9f9f9;
+    }
+    .pin {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 20px;
+      background: #fff;
+      display: inline-block;
+      padding: 20px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Today's Generated PIN</h1>
+  <div class="pin" id="pinDisplay"></div>
+
+  <script>
+    function generatePin() {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1; // JS months are 0-based
+      const day = today.getDate();
+
+      const sum = year + month + day;
+      const d = sum * 37;
+      const pin = String(d % 1000000).padStart(6, '0');
+
+      document.getElementById('pinDisplay').textContent = pin;
+    }
+
+    generatePin();
+  </script>
+</body>
+</html>
